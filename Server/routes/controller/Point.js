@@ -1,7 +1,6 @@
 import mongoose from "mongoose";
 import users from '../models/auth.js';
 
-
 export const updatePoints = async (req, res) => {
     const { id: _id } = req.params;
     const { points } = req.body;
