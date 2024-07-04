@@ -12,7 +12,7 @@ import { login } from "../../actions/auth";
 import { Link } from "react-router-dom";
 
 const VideoPage = () => {
-  const API_KEY = "AIzaSyDAJJgsXni6thQgIiTgWkQpCG6tu9MBKy4";
+  const API_KEY = "AIzaSyC3OGBAud9UnolwZ7uXRlaO-bBV7BpPMTs";
   const API_URL = `https://www.googleapis.com/youtube/v3/search`;
   const location = useLocation();
   const videoDetails = location.state?.vid;

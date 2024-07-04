@@ -16,7 +16,7 @@ const Home = () => {
         setVideos(data);
         setLoading(false);
       } catch (error) {
-        setError(error.message);
+        setError("There was an issue fetching the videos. Please check your internet connection and try again.");
         setLoading(false);
       }
     };
@@ -24,14 +24,7 @@ const Home = () => {
     getVideos();
   }, []);
 
-  if (loading) {
-    return <div>Loading...</div>;
-  }
-
-  if (error) {
-    return <div>Error: {error}</div>;
-  }
-
+ 
 
   const NavList =[
     "All",
@@ -65,7 +58,8 @@ const Home = () => {
             </p>
           ))}
       </div>
-      <ShowVideoGrid vids={videos}/>
+      <ShowVideoGrid vids={videos} loading={loading} error={error} />
+
     </div>
   </div>
   </>
