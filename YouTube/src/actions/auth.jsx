@@ -9,7 +9,7 @@ export const login = (authData) => async (dispatch) => {
     localStorage.setItem('profile', JSON.stringify(data));
     dispatch(setCurrentUser(JSON.parse(localStorage.getItem('profile'))));
   } catch (error) {
-    alert(`Login failed: ${error.message}`);
+    console.log(`Login failed: ${error.message}`);
   }
 };
 

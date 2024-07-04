@@ -20,7 +20,7 @@ const Navbar = ({ toggleDraw, setEditChannelBtn }) => {
   useEffect(() => {
     function start() {
       gapi.client.init({
-        clientId: "777304984252-52gg0c3deutvo106o348aa5qn2sqv6ma.apps.googleusercontent.com",
+        clientId: "789311672821-c77kb2lnltc3e9bbqcpbbpj6eev9cutk.apps.googleusercontent.com",
         scope: "email"
       });
     }
@@ -76,7 +76,7 @@ const Navbar = ({ toggleDraw, setEditChannelBtn }) => {
           ) : (
             <>
               <GoogleLogin
-                clientId={"777304984252-52gg0c3deutvo106o348aa5qn2sqv6ma.apps.googleusercontent.com"}
+                clientId={"789311672821-c77kb2lnltc3e9bbqcpbbpj6eev9cutk.apps.googleusercontent.com"}
                 onSuccess={handleLoginSuccess}
                 onError={handleLoginFailure}
                 render={(renderProps) => (
