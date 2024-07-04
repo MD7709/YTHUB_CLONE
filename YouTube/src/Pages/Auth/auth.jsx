@@ -1,6 +1,5 @@
 import React from 'react';
 import './Auth.css';
-import { GoogleLogout } from 'react-google-login';
 import { useDispatch } from 'react-redux';
 import { setCurrentUser } from '../../actions/currentUser';
 
@@ -11,7 +10,7 @@ const Auth = ({ User, setAuthbtn, setEditChannelBtn }) => {
     dispatch(setCurrentUser(null));
     localStorage.removeItem('currentUser');
     alert("Logout Success");
-    setAuthbtn(false); 
+    setAuthbtn(false);
   };
 
   const getInitial = () => {
@@ -44,16 +43,10 @@ const Auth = ({ User, setAuthbtn, setEditChannelBtn }) => {
               onClick={() => setEditChannelBtn(true)} 
             />
           </div>
+          <div className="logout_btn">
+            <button className="logout" onClick={onLogoutSuccess}>Logout</button>
+          </div>
         </div>
-        <GoogleLogout
-          clientId={"777304984252-52gg0c3deutvo106o348aa5qn2sqv6ma.apps.googleusercontent.com"}
-          onLogoutSuccess={onLogoutSuccess}
-          render={(renderProps) => (
-            <div className="logout_btn" onClick={renderProps.onClick}>
-              <button className="logout">Logout</button>
-            </div>
-          )}
-        />
         <div className="auth_footer">
           <p>Thank you for using our service.</p>
         </div>
