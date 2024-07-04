@@ -1,9 +1,7 @@
 import React, { useEffect } from "react";
 import LeftSlifBar from "../../Componets/LeftSlidBar/LeftSlifBar";
 import "./Library.css";
-import { FcGoogle } from "react-icons/fc";
 import { FaHistory, FaPlayCircle, FaUser } from "react-icons/fa";
-import { GoogleLogin } from 'react-google-login';
 import SultanVideo from '../../Componets/video/Sultan.mp4';
 import { login } from '../../actions/auth';
 import { useDispatch, useSelector } from "react-redux";
