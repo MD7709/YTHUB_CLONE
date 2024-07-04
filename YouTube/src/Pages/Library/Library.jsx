@@ -16,30 +16,43 @@ export const Library = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    function start() {
+    gapi.load("client:auth2", () => {
       gapi.client.init({
-        clientId: "777304984252-52gg0c3deutvo106o348aa5qn2sqv6ma.apps.googleusercontent.com",
+        clientId: "789311672821-c77kb2lnltc3e9bbqcpbbpj6eev9cutk.apps.googleusercontent.com",
         scope: "email"
+      }).then(() => {
+        const authInstance = gapi.auth2.getAuthInstance();
+        if (authInstance.isSignedIn.get()) {
+          const user = authInstance.currentUser.get();
+          const profile = user.getBasicProfile();
+          const email = profile.getEmail();
+          const userObj = { email };
+          dispatch(login(userObj));
+          localStorage.setItem('currentUser', JSON.stringify(userObj));
+        }
       });
-    }
-    gapi.load("client:auth2", start);
-
-    const storedUser = JSON.parse(localStorage.getItem('currentUser'));
-    if (storedUser) {
-      dispatch(login(storedUser));
-    }
+    });
   }, [dispatch]);
 
-  const handleLoginSuccess = (response) => {
-    const Email = response?.profileObj?.email;
-    const user = { email: Email };
-    dispatch(login(user));
-    localStorage.setItem('currentUser', JSON.stringify(user));
+  const handleLoginSuccess = () => {
+    const authInstance = gapi.auth2.getAuthInstance();
+    const user = authInstance.currentUser.get();
+    const profile = user.getBasicProfile();
+    const email = profile.getEmail();
+    const userObj = { email };
+    dispatch(login(userObj));
+    localStorage.setItem('currentUser', JSON.stringify(userObj));
   };
 
   const handleLoginFailure = (error) => {
     console.log('Login Failed:', error);
   };
+
+  const handleSignInClick = () => {
+    const authInstance = gapi.auth2.getAuthInstance();
+    authInstance.signIn().then(handleLoginSuccess, handleLoginFailure);
+  };
+
   const History = [
     {
       _id: 1,
@@ -83,19 +96,14 @@ export const Library = () => {
                   </span>
                   Switch account
                 </button>
-                 <GoogleLogin
-                clientId={"777304984252-52gg0c3deutvo106o348aa5qn2sqv6ma.apps.googleusercontent.com"}
-                onSuccess={handleLoginSuccess}
-                onError={handleLoginFailure}
-                render={(renderProps) => (
-                  <button onClick={renderProps.onClick} className="Channel_btn_button">
-                  <span>
-                    <FcGoogle size={15} />
-                  </span>
-                  Google Account
-                </button>
-                )}
-              />
+                {CurrentUser && CurrentUser.result ? (
+            <>
+              <button className='btn btn-light' onClick={handleSignInClick}>Logout</button>
+              
+            </>
+          ) : (
+            <button className='btn btn-light' onClick={handleSignInClick}>Singin</button>
+          )}
               <button className="Channel_btn_button">
                 Points: {CurrentUser?.result?.points || 0}
               </button>

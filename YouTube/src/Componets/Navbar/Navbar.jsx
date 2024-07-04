@@ -4,12 +4,11 @@ import Hambler from '../../assets/Hamler.svg';
 import Auth from '../../Pages/Auth/auth';
 import './Navbar.css';
 import Serach from '../Search/Serach';
-import { GoogleLogin } from 'react-google-login';
 import { RiVideoAddLine } from 'react-icons/ri';
 import { IoMdNotificationsOutline } from 'react-icons/io';
 import { Link } from 'react-router-dom';
 import { login } from '../../actions/auth';
-import { useDispatch, useSelector } from 'react-redux'; 
+import { useDispatch, useSelector } from 'react-redux';
 import { gapi } from 'gapi-script';
 
 const Navbar = ({ toggleDraw, setEditChannelBtn }) => {
@@ -18,30 +17,41 @@ const Navbar = ({ toggleDraw, setEditChannelBtn }) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    function start() {
+    gapi.load("client:auth2", () => {
       gapi.client.init({
         clientId: "789311672821-c77kb2lnltc3e9bbqcpbbpj6eev9cutk.apps.googleusercontent.com",
         scope: "email"
+      }).then(() => {
+        const authInstance = gapi.auth2.getAuthInstance();
+        if (authInstance.isSignedIn.get()) {
+          const user = authInstance.currentUser.get();
+          const profile = user.getBasicProfile();
+          const email = profile.getEmail();
+          const userObj = { email };
+          dispatch(login(userObj));
+          localStorage.setItem('currentUser', JSON.stringify(userObj));
+        }
       });
-    }
-    gapi.load("client:auth2", start);
-
-    // Check for user in local storage and update state if found
-    const storedUser = JSON.parse(localStorage.getItem('currentUser'));
-    if (storedUser) {
-      dispatch(login(storedUser));
-    }
+    });
   }, [dispatch]);
 
-  const handleLoginSuccess = (response) => {
-    const Email = response?.profileObj?.email;
-    const user = { email: Email };
-    dispatch(login(user));
-    localStorage.setItem('currentUser', JSON.stringify(user));
+  const handleLoginSuccess = () => {
+    const authInstance = gapi.auth2.getAuthInstance();
+    const user = authInstance.currentUser.get();
+    const profile = user.getBasicProfile();
+    const email = profile.getEmail();
+    const userObj = { email };
+    dispatch(login(userObj));
+    localStorage.setItem('currentUser', JSON.stringify(userObj));
   };
 
   const handleLoginFailure = (error) => {
     console.log('Login Failed:', error);
+  };
+
+  const handleSignInClick = () => {
+    const authInstance = gapi.auth2.getAuthInstance();
+    authInstance.signIn().then(handleLoginSuccess, handleLoginFailure);
   };
 
   return (
@@ -57,7 +67,7 @@ const Navbar = ({ toggleDraw, setEditChannelBtn }) => {
         <div className='Navbar_last'>
           <RiVideoAddLine size={30} className='Create_Video' />
           <IoMdNotificationsOutline size={30} className='Notification' />
-         
+
           {CurrentUser && CurrentUser.result ? (
             <>
               <div className="Current_user_logo" onClick={() => setAuthbtn(true)}>
@@ -71,23 +81,14 @@ const Navbar = ({ toggleDraw, setEditChannelBtn }) => {
                 <p className='points'>
                   Points: {CurrentUser.result.points}
                 </p>
-              </div>  
+              </div>
             </>
           ) : (
-            <>
-              <GoogleLogin
-                clientId={"789311672821-c77kb2lnltc3e9bbqcpbbpj6eev9cutk.apps.googleusercontent.com"}
-                onSuccess={handleLoginSuccess}
-                onError={handleLoginFailure}
-                render={(renderProps) => (
-                  <button className='btn btn-light' onClick={renderProps.onClick}>Sign In</button>
-                )}
-              />
-            </>
+            <button className='btn btn-light' onClick={handleSignInClick}>Sign In</button>
           )}
         </div>
       </div>
-      {Authbtn && 
+      {Authbtn &&
         <Auth User={CurrentUser} setAuthbtn={setAuthbtn} setEditChannelBtn={setEditChannelBtn} />
       }
     </>
