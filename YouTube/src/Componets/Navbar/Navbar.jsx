@@ -19,7 +19,7 @@ const Navbar = ({ toggleDraw, setEditChannelBtn }) => {
   useEffect(() => {
     gapi.load("client:auth2", () => {
       gapi.client.init({
-        clientId: "588900123405-umlnddaghpathio28pa4m257fl4rdl2t.apps.googleusercontent.com",
+        clientId: "861778122358-sag7gf1qc4uuekidqtvikqutapqp769h.apps.googleusercontent.com",
         scope: "email"
       }).then(() => {
         const authInstance = gapi.auth2.getAuthInstance();
@@ -84,7 +84,7 @@ const Navbar = ({ toggleDraw, setEditChannelBtn }) => {
               </div>
             </>
           ) : (
-            <button className='btn btn-light' onClick={handleSignInClick}>Sign In</button>
+            <button className='Channel_btn_button_1' onClick={handleSignInClick}>Sign In</button>
           )}
         </div>
       </div>

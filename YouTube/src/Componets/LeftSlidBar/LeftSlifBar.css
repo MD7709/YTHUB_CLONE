@@ -129,3 +129,19 @@
         display: none;
     }
 }
+@media (max-width: 420px) {
+    .container_leftSlidbar{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    .Home_icon_slidbar
+    
+    {
+        width: 15px;
+    }
+    .Home_icon_text
+    {
+        width: 15px;
+    }
+}

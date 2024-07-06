@@ -16,7 +16,7 @@ export const Library = () => {
   useEffect(() => {
     gapi.load("client:auth2", () => {
       gapi.client.init({
-        clientId: "588900123405-umlnddaghpathio28pa4m257fl4rdl2t.apps.googleusercontent.com",
+        clientId: "861778122358-sag7gf1qc4uuekidqtvikqutapqp769h.apps.googleusercontent.com",
         scope: "email"
       }).then(() => {
         const authInstance = gapi.auth2.getAuthInstance();
@@ -96,11 +96,11 @@ export const Library = () => {
                 </button>
                 {CurrentUser && CurrentUser.result ? (
             <>
-              <button className='btn btn-light' onClick={handleSignInClick}>Logout</button>
+              <button className="Channel_btn_button" onClick={handleSignInClick}>Logout</button>
               
             </>
           ) : (
-            <button className='btn btn-light' onClick={handleSignInClick}>Singin</button>
+            <button className="Channel_btn_button" onClick={handleSignInClick}>Singin</button>
           )}
               <button className="Channel_btn_button">
                 Points: {CurrentUser?.result?.points || 0}

@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_KEY = 'AIzaSyC3OGBAud9UnolwZ7uXRlaO-bBV7BpPMTs';
+const API_KEY = 'AIzaSyA3gq6sCkR2l8u98-3DI2RtxpRFzQrN6QE';
 const API_URL = `https://www.googleapis.com/youtube/v3/search`;
 
 export const fetchVideos = async (query) => {
@@ -8,7 +8,7 @@ export const fetchVideos = async (query) => {
     const response = await axios.get(API_URL, {
       params: {
         part: 'snippet',
-        maxResults: 500,
+        maxResults: 100,
         q: query || 'All',
         key: API_KEY
       }
@@ -20,3 +20,4 @@ export const fetchVideos = async (query) => {
     throw error;
   }
 };
+

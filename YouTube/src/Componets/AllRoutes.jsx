@@ -6,6 +6,7 @@ import Subscription from '../Pages/Subscription/Subscription';
 import Shorts from '../Pages/Shorts/Shorts';
 import VideoPage from '../Pages/VideoPage/VideoPage';
 import VideoCall from '../Pages/VideoCall/VideoCall';
+import Room from '../Pages/VideoCall/Room';
 
 const AllRoutes = () => {
   return (
@@ -16,6 +17,7 @@ const AllRoutes = () => {
    <Route path='/Shorts' element={  <Shorts/>}/>
    <Route path='/VideoPage/:id' element={  <VideoPage/>}/>
    <Route path='/VideoCall' element={  <VideoCall/>}/>
+   <Route path='/room/:id' element={  <Room/>}/>
  </Routes>
   )
 }
