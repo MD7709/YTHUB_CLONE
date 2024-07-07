@@ -1,10 +1,10 @@
 .Video_showVideo {
     cursor: pointer;
-    width: 242px;
+    width: 241px;
     height: 136px;
     margin-bottom: 0;
     border-radius: 10px;
-    border: 1px solid rgba(128, 128, 128, 0.532);
+    
 }
 
 .Video_Detail {
@@ -41,7 +41,7 @@
 
 .Cuurent_user_logo_Video {
     display: flex;
-    padding-left: 9px;
+    padding-left: 0px;
 }
 
 .Logo_app_video {
@@ -59,7 +59,6 @@
 
 .video_Dsc {
     display: flex;
-    margin-top: 0.5rem;
     width: 100%;
 }
 

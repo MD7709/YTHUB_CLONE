@@ -31,17 +31,21 @@
   }
   
   .Sub_btn_button {
-    border: 1px solid white;
-    background-color: transparent;
-    width: 90px;
-    height: 35px;
+    height: 20px;
+    padding: 20px;
     border-radius: 20px;
-    color: #fff;
-    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    background-color: #f2f2f2;
+    color: #000000;
+    gap: 10px;
+    font-size: 15px;
   }
   
   .Sub_btn_button:hover {
-    background-color: #424141; 
+    background-color: #d8d8d8; 
   }
   
   .Sub_content {
@@ -85,10 +89,25 @@
     .Sub_content
     {
       gap: 0.5rem;
+      display: flex;
+      flex-direction: column;
+    }
+    .Sub_video_container
+    {
+      display: flex;
+      width:100%;
+    }
+    .video_detail_Sub
+    {
+      width: 100%;
     }
     .video_detail_Sub h4
     {
-      font-size: 10px;
+      font-size: 20px;
+    }
+    .library_Subscription_container
+    {
+      flex-direction: column;
     }
   }
   

@@ -1,11 +1,9 @@
 .navlist_home {
   color: #0f0f0f;
   background-color: rgb(255, 255, 255);
-  position: sticky;
   display: flex;
   overflow-x: auto;
   box-shadow: rgba(0, 0, 0, 0.10) 0px 25px 20px -20px;
-  top: 0;
   padding: 0.5rem 0;
 }
 

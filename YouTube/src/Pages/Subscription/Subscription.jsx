@@ -76,7 +76,7 @@
           <div className="Subname">
             <div className="Sub_title">
               <div className="Sub_icon">
-                <p>Latest</p>
+                <p className='text-black'>Latest</p>
               </div>
             </div>
             <div className="Sub_btn">

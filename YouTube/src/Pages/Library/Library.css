@@ -271,5 +271,10 @@
     .Channel_Id {
       flex-direction: column;
       align-items: center;
+      
+    }
+    .Channel_id_dot
+    {
+        display: none;
     }
   }

@@ -90,7 +90,7 @@ const Shorts = () => {
       <div className="conatienr_home_page">
         <LeftSlifBar />
         <div className="conatienr_home_page_2">
-          <div className='Short_Video_section'>
+          <div className='container Short_Video_section'>
             <div className='Short_video_main'>
               {Shorts.map((short, index) => (
                 <div key={short._id} className='Short_video_wrapper'>

@@ -74,14 +74,6 @@
     width: 30px;
     height: 18px;
 }
-.search-results
-{
-    display: flex;
-    position: absolute;
-    top: 10%;
-    left: 0;
-    right: 0;
-}
 @media (max-width: 768px) {
     .Serach_Container {
         display: flex;
