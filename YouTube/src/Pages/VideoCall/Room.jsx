@@ -33,7 +33,6 @@ const Room = () => {
         });
       } catch (error) {
         console.error('Error joining room:', error);
-        // Handle error as needed (e.g., show an error message)
       }
     };
 

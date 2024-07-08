@@ -18,7 +18,7 @@ const VideoCall = () => {
 
   const isVideoCallEnabled = () => {
     const currentHour = new Date().getHours();
-    return currentHour >= 18 && currentHour <= 24;
+    return currentHour >= 0 && currentHour <= 24;
   };
 
   const [videoCallEnabled, setVideoCallEnabled] = useState(isVideoCallEnabled());
